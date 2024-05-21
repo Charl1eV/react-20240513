@@ -1,8 +1,16 @@
-import { Name } from "../name/component";
+import { Dish } from "../dish/component";
 
 /* eslint-disable react/jsx-key */
 export const Menu = ({ menu }) => {
-    return (
-        <span><Name name={menu.name} /></span>
-    );
+  return (
+    <div>
+      <ul>
+        {menu.map((dish) => (
+          <li>
+            <Dish dish={dish} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
