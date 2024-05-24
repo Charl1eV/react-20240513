@@ -1,30 +1,18 @@
 /* eslint-disable react/jsx-key */
 import { useState } from "react";
 import { Name } from "../name/component";
+import { Counter } from "../counter/component";
+
+const initialValue = 0;
 
 export const Dish = ({ dish }) => {
-    const [count, setCount] = useState(0);
-
-    const increment = () => {
-        if (count < 5) {
-            setCount(count + 1);
-        }
-    };
-
-    const decrement = () => {
-        if (count > 0) {
-            setCount(count - 1);
-        }
-    };
+    const [count, setCount] = useState(initialValue);
 
     return (
         <span>
             <Name name={dish.name} />
-            <span>
-                <button onClick={decrement}>-</button>
-                {count}
-                <button onClick={increment}>+</button>
-            </span>
+            <Counter value={count} onChange={setCount} />
+            {count * dish.price}
         </span>
     );
 };
