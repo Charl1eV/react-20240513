@@ -1,17 +1,21 @@
 /* eslint-disable react/jsx-key */
-import { useState } from "react";
 import { Name } from "../name/component";
-import { Counter } from "../counter/component";
+import { useCount } from "../../hooks/use-count";
 
-const initialValue = 0;
+const min = 0;
+const max = 10;
 
 export const Dish = ({ dish }) => {
-    const [count, setCount] = useState(initialValue);
+    const { count, increment, decrement } = useCount({ min, max });
 
     return (
         <span>
             <Name name={dish.name} />
-            <Counter value={count} onChange={setCount} />
+            <div>
+                <button onClick={decrement} disabled={count === min}>-</button>
+                {count}
+                <button onClick={increment} disabled={count === max}>+</button>
+            </div>
             {count * dish.price}
         </span>
     );
