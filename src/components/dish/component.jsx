@@ -7,12 +7,12 @@ const min = 0;
 const max = 10;
 
 export const Dish = ({ dish }) => {
-    const { count, increment, decrement, result } = useCount({ min, max });
+    const { count, increment, decrement } = useCount({ min, max });
 
     useEffect(() => {
         increment();
         decrement();
-      }, [increment, decrement, result]);
+      }, [increment, decrement]);
     
 
     return (
