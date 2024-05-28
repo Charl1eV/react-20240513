@@ -1,25 +1,19 @@
 /* eslint-disable react/jsx-key */
 import { useState } from "react";
 import { Restaurant } from "../restaurant/component";
+import { RestaurantTabs } from "../restaurant-tabs/component";
 
 export const Restaurants = ({ restaurants }) => {
-    const [restaurant, setRestaurant] = useState(!!restaurants?.length ? restaurants[0] : null);
+    const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
 
-    function cooseRestaurant(name)  {
-        if (name !== restaurant.name) {
-            setRestaurant(restaurants.find((restaurant) => restaurant.name === name));
-        }
-    };
+    if (!restaurants) {
+        return <div>No Restaurants</div>;
+    }
 
     return (
         <div>
-            {(restaurants || []).map((restaurant) => (
-                <button onClick={() => cooseRestaurant(restaurant.name)}>{restaurant.name}</button>
-            ))}
-            <Restaurant restaurant={restaurant} />
-            {/* {(restaurants || []).map((restaurant) => (
-                <Restaurant restaurant={restaurant} />
-            ))} */}
+            <RestaurantTabs restaurants={restaurants} onTabClick={setActiveRestaurantIndex} activTabIndex={activeRestaurantIndex} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
         </div>
     )
 };
