@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-key */
 import { useReducer } from "react";
-import { Rating } from "../raiting/component";
+import { Rating } from "../rating/component";
 
-const MIN_RAITING = 1;
-const MAX_RAITING = 5;
+const MIN_RATING = 1;
+const MAX_RATING = 5;
 const DEFAULT_FORM_VALUE = {
     name: "",
     text: "",
     address: "",
-    rating: MAX_RAITING,
+    rating: MAX_RATING,
 };
 
 function reducer(state, { type, payload } = {}) {
@@ -51,7 +51,7 @@ export const ReviewForm = () => {
                     }
                 />
             </div>
-            <Rating minRating={MIN_RAITING} maxRating={MAX_RAITING} form={form} dispatch={dispatch} />
+            <Rating min={MIN_RATING} max={MAX_RATING} rating={form.rating} dispatch={dispatch} />
             <div>
                 <button onClick={() => dispatch({ type: "onSave"})}>Сохранить</button>
             </div>
