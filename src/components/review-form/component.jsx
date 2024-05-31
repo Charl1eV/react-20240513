@@ -51,7 +51,7 @@ export const ReviewForm = () => {
                     }
                 />
             </div>
-            <Rating min={MIN_RATING} max={MAX_RATING} rating={form.rating} dispatch={dispatch} />
+            <Rating max={MAX_RATING} value={form.rating} onButtonClick={(index) => dispatch({ type: "setRating", payload: index + 1 })} />
             <div>
                 <button onClick={() => dispatch({ type: "onSave"})}>Сохранить</button>
             </div>
