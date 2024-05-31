@@ -14,6 +14,19 @@ export const Restaurants = ({ restaurants }) => {
         <div>
             <RestaurantTabs restaurants={restaurants} onTabClick={setActiveRestaurantIndex} activTabIndex={activeRestaurantIndex} />
             <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
         </div>
     )
 };
