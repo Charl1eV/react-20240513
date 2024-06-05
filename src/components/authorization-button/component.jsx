@@ -1,25 +1,25 @@
 /* eslint-disable react/jsx-key */
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
-import { UserContext } from "../../contexts/user";
+import { Button } from "../button/component";
+import { useUser } from "../../contexts/user/hooks"
+import { useCallback, useState } from "react";
+import { Modal } from "../modal/component";
+import { AuthorizationForm } from "../authorization-form/component";
 
-export const AuthorizationButton = ({ logIn, logOut }) => {
-    const backgroundColor = useContext(ThemeContext);
-    const userContecst = useContext(UserContext);
+export const AuthorizationButton = () => {
+    const { user, logOut, logIn } = useUser();
+    const [isVisible, seyIsVisible] = useState(false);
+
+    const handleClose = useCallback(() => seyIsVisible(false), []);
+    const handleLogin = useCallback((name) => {
+        logIn(name);
+        handleClose();
+    }, [logIn]);
 
     return (
         <div>
-            {!userContecst ? (
-                <div>
-                    <span style={{ display: 'inlineBlock', marginRight: '5px' }} >{userContecst}</span>
-                    <button style={{ backgroundColor }} onClick={() => logIn()}>Log In</button>
-                </div>
-            ) : (
-                <div>
-                    <span style={{ display: 'inlineBlock', marginRight: '5px' }} >{userContecst}</span>
-                    <button style={{ backgroundColor }} onClick={() => logOut()}>Log Out</button>
-                </div>
-            )}
+            <span>{user}</span>
+            {user ? <Button onClick={() => logOut()}>Log Out</Button> : <Button onClick={() => seyIsVisible(true)}>Log In</Button>}
+            {isVisible && <Modal onClose={handleClose}><AuthorizationForm onLogin={handleLogin} onCancel={handleClose} /></Modal>}
         </div>
     )
 };

@@ -1,16 +1,15 @@
 /* eslint-disable react/jsx-key */
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
 import { AuthorizationButton } from "../authorization-button/component";
+import { ThemeToggler } from "../theme-toggller/component";
 
-export const Header = ({ changeTheme, logIn, logOut }) => {
-    const backgroundColor = useContext(ThemeContext);
+import styles from "./styles.module.scss"
 
+export const Header = ({ logIn, logOut }) => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <header>Header</header>
+        <header className={styles.root}>
+            Header
             <AuthorizationButton logIn={logIn} logOut={logOut} />
-            <button style={{ backgroundColor }} onClick={() => changeTheme(backgroundColor)}>Change Theme</button>
-        </div>
+            <ThemeToggler />
+        </header>
     )
 };

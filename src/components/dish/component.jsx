@@ -2,17 +2,15 @@
 import { Name } from "../name/component";
 import { useCount } from "../../hooks/use-count";
 import { useEffect } from "react";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
-import { UserContext } from "../../contexts/user";
+import { Button } from "../button/component";
+import { useUser } from "../../contexts/user/hooks";
 
 const min = 0;
 const max = 10;
 
 export const Dish = ({ dish }) => {
     const { count, increment, decrement } = useCount({ min, max });
-    const backgroundColor = useContext(ThemeContext);
-    const userContecst = useContext(UserContext);
+    const { user } = useUser();
 
     useEffect(() => {
         increment();
@@ -23,10 +21,10 @@ export const Dish = ({ dish }) => {
     return (
         <span>
             <Name name={dish.name} />
-            {!!userContecst && (<div>
-                <button style={{ backgroundColor }} onClick={decrement} disabled={count === min}>-</button>
+            {!!user && (<div>
+                <Button onClick={decrement} disabled={count === min}>-</Button>
                 {count}
-                <button style={{ backgroundColor }} onClick={increment} disabled={count === max}>+</button>
+                <Button onClick={increment} disabled={count === max}>+</Button>
                 <div>price: {count * dish.price}$</div>
             </div>
         )}

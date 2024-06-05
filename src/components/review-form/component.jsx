@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { useReducer } from "react";
 import { Rating } from "../rating/component";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
+import { Button } from "../button/component";
 
 const MAX_RATING = 5;
 const DEFAULT_FORM_VALUE = {
@@ -29,7 +28,6 @@ function reducer(state, { type, payload } = {}) {
 
 export const ReviewForm = () => {
     const [form, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
-    const backgroundColor = useContext(ThemeContext);
 
     return (
         <div>
@@ -55,7 +53,7 @@ export const ReviewForm = () => {
             </div>
             <Rating max={MAX_RATING} value={form.rating} onButtonClick={(index) => dispatch({ type: "setRating", payload: index + 1 })} />
             <div>
-                <button style={{ backgroundColor }} onClick={() => dispatch({ type: "onSave"})}>Сохранить</button>
+                <Button onClick={() => dispatch({ type: "onSave"})}>Сохранить</Button>
             </div>
         </div>
     );
