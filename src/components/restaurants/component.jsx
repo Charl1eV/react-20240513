@@ -1,32 +1,17 @@
 /* eslint-disable react/jsx-key */
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Restaurant } from "../restaurant/component";
 import { RestaurantTabs } from "../restaurant-tabs/component";
 
-export const Restaurants = ({ restaurants }) => {
-    const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
-
-    if (!restaurants) {
-        return <div>No Restaurants</div>;
-    }
+export const Restaurants = () => {
+    const initialId = useSelector(state => state.restaurant.ids[0]);
+    const [activeRestaurantId, setActiveRestaurantId] = useState(initialId);
 
     return (
         <div>
-            <RestaurantTabs restaurants={restaurants} onTabClick={setActiveRestaurantIndex} activTabIndex={activeRestaurantIndex} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <RestaurantTabs onTabClick={setActiveRestaurantId} activTabIndex={activeRestaurantId} />
+            <Restaurant restaurantId={activeRestaurantId} />
         </div>
     )
 };

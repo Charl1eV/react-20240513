@@ -1,1 +1,0 @@
-export const BUTTON_THEME = ['LightCoral', 'aqua'];
