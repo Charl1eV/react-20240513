@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { useReducer } from "react";
 import { Rating } from "../rating/component";
+import { Button } from "../button/component";
 
-const MIN_RATING = 1;
 const MAX_RATING = 5;
 const DEFAULT_FORM_VALUE = {
     name: "",
@@ -53,7 +53,7 @@ export const ReviewForm = () => {
             </div>
             <Rating max={MAX_RATING} value={form.rating} onButtonClick={(index) => dispatch({ type: "setRating", payload: index + 1 })} />
             <div>
-                <button onClick={() => dispatch({ type: "onSave"})}>Сохранить</button>
+                <Button onClick={() => dispatch({ type: "onSave"})}>Сохранить</Button>
             </div>
         </div>
     );

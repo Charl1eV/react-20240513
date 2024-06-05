@@ -2,28 +2,32 @@
 import { Name } from "../name/component";
 import { useCount } from "../../hooks/use-count";
 import { useEffect } from "react";
+import { Button } from "../button/component";
+import { useUser } from "../../contexts/user/hooks";
 
 const min = 0;
 const max = 10;
 
 export const Dish = ({ dish }) => {
     const { count, increment, decrement } = useCount({ min, max });
+    const { user } = useUser();
 
     useEffect(() => {
         increment();
         decrement();
-      }, [increment, decrement]);
-    
+    }, [increment, decrement]);
+
 
     return (
         <span>
             <Name name={dish.name} />
-            <div>
-                <button onClick={decrement} disabled={count === min}>-</button>
+            {!!user && (<div>
+                <Button onClick={decrement} disabled={count === min}>-</Button>
                 {count}
-                <button onClick={increment} disabled={count === max}>+</button>
+                <Button onClick={increment} disabled={count === max}>+</Button>
+                <div>price: {count * dish.price}$</div>
             </div>
-            {count * dish.price}
+        )}
         </span>
     );
 };
